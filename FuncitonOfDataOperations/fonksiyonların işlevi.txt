@@ -1,0 +1,34 @@
+﻿1- SaveChanges Fonksiyonu
+
+insert, update ve delete SORGULARINI oluşturur ve bir TRANSACTION eşliğinde veritabanına gönderip EXECUTE eden fonksiyondur.
+Eğer ki oluşturulan sorgulardan herhangi biri başarısız olursa tüm işlemleri geri alır(rollback işlemi yapılır.)
+
+2- context nesnemiz üzerinden Entry() fonksiyonu ile fonksiyonun içine vereceğimiz veri nesnemizin State'ine yani durumuna bakabiliriz.
+Örneğin : eTicaretDbContext.Entry(urun).State dediğimizde veri üzerinde;
+
+	eğer hiçbir işlem yapılmamışsa							: Detached
+	eğer ekleme işlemi yapıldıysa							: Added
+	eğer güncelleme işlemi yapıldıysa						: Modified
+	eğer en son işlemden sonra yeni bir işlem yapılmadıysa	: Unchanged
+	eğer silme işlemi yapıldıysa							: Deleted
+
+durumları nesnenin durumuna atanır.
+
+3- ChanceTracker : Context nesnesi üzerinden gelen verilerin takibinden sorumlu bir mekanizmadır. Bu takip mekanizması sayesinde context üzerinden gelen verilerle ilgili işlemler neticesinde update yahut delete sorgularının oluşturulacağı anlaşılır.
+
+
+4- Context nesnesi üzerinden çağırılmamış, ChangeTracker ile takip edilmeyen bir verinin güncellenmesi için 
+	
+		context.Set<Urun>().Update(urun);
+
+	şeklindeki fonksiyonu kullanırız.
+
+
+5- EntityState nedir?
+
+	Bir entity instance'ının durumunu ifade eden bir referanstır.
+
+6- context nesnesi üzerinden tablomuzun tamamını çekmek istersek
+		
+			List<Urun> urunler = await context.Set<Urun>().ToListAsync();
+	komutunu kullanırız.
