@@ -6,23 +6,23 @@ ETicaretDbContext eTicaretDbContext = new();
 
 #region Veri nasıl Eklenir ? 
 
-////önce veri oluşturulur daha sonra ekleme fonksiyonu çağırılır
-//Urun urun1 = new()
-//{
-//    Name = "Set ile ekleme",
-//    Price = 35
-//};
+//önce veri oluşturulur daha sonra ekleme fonksiyonu çağırılır
+Urun urun1 = new()
+{
+    Name = "Set ile ekleme",
+    Price = 35
+};
 
-////bu fonksiyon ile object olarak yani tip güvenliksiz şekilde, biz ürünü context üzerinden ekleme işlemi yapacağımızı belirtiyoruz
-//await eTicaretDbContext.AddAsync(urun1);
-////ekleme işleminde tip güvenliği ile çalışmak istersek
-//await eTicaretDbContext.Set<Urun>().AddAsync(urun1);
+//bu fonksiyon ile object olarak yani tip güvenliksiz şekilde, biz ürünü context üzerinden ekleme işlemi yapacağımızı belirtiyoruz
+await eTicaretDbContext.AddAsync(urun1);
+//ekleme işleminde tip güvenliği ile çalışmak istersek
+await eTicaretDbContext.Set<Urun>().AddAsync(urun1);
 
-////daha sonra SaveChanges fonksiyonu ile CRUD operasyonları veritabanında işleme alınıyor.
-//await eTicaretDbContext.SaveChangesAsync();
+//daha sonra SaveChanges fonksiyonu ile CRUD operasyonları veritabanında işleme alınıyor.
+await eTicaretDbContext.SaveChangesAsync();
 
-////eklenen ürünün id bilgisine bu şekilde kolayca ulaşılabilir.
-//Console.WriteLine(urun1.Id);
+//eklenen ürünün id bilgisine bu şekilde kolayca ulaşılabilir.
+Console.WriteLine(urun1.Id);
 
 #endregion
 
